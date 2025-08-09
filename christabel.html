@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Happy Birthday Christabel</title>
+<style>
+    body {
+        margin: 0;
+        font-family: 'Comic Sans MS', cursive, sans-serif;
+        background: #ffe6f0;
+        text-align: center;
+        color: #333;
+        overflow-x: hidden;
+    }
+    .page {
+        display: none;
+        padding: 40px 20px;
+        min-height: 100vh;
+        box-sizing: border-box;
+    }
+    .active {
+        display: block;
+    }
+    h1 {
+        font-size: 2.5em;
+        margin-bottom: 20px;
+        color: #ff4d88;
+    }
+    p {
+        font-size: 1.2em;
+        margin: 15px 0;
+    }
+    .next-btn {
+        display: inline-block;
+        margin-top: 30px;
+        padding: 12px 25px;
+        background: #ff4d88;
+        color: white;
+        border: none;
+        border-radius: 30px;
+        font-size: 1.1em;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+    .next-btn:hover {
+        background: #e63e76;
+    }
+    img {
+        max-width: 90%;
+        margin: 10px 0;
+        border-radius: 15px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    }
+    .love-note {
+        background: #fff0f5;
+        padding: 15px;
+        margin: 10px auto;
+        border-radius: 15px;
+        max-width: 600px;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+    /* Final page hearts */
+    .hearts {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        overflow: hidden;
+        z-index: -1;
+    }
+    .heart {
+        position: absolute;
+        color: #ff4d88;
+        font-size: 24px;
+        animation: float 6s linear infinite;
+    }
+    @keyframes float {
+        0% { transform: translateY(100vh) scale(1); opacity: 1; }
+        100% { transform: translateY(-10vh) scale(1.5); opacity: 0; }
+    }
+</style>
+</head>
+<body>
+
+<div class="page active" id="page1">
+    <h1>Happy Birthday Christabel 🎉</h1>
+    <p>Welcome to your birthday surprise website 💖</p>
+    <button class="next-btn" onclick="nextPage()">Next</button>
+</div>
+
+<div class="page" id="page2">
+    <h1>Memories 📸</h1>
+    <img src="data:image/jpeg;base64,{{BASE64_IMAGE1}}" alt="Memory 1">
+    <img src="data:image/jpeg;base64,{{BASE64_IMAGE2}}" alt="Memory 2">
+    <img src="data:image/jpeg;base64,{{BASE64_IMAGE3}}" alt="Memory 3">
+    <button class="next-btn" onclick="nextPage()">Next</button>
+</div>
+
+<div class="page" id="page3">
+    <h1>Photos of Us ❤️</h1>
+    <img src="data:image/jpeg;base64,{{BASE64_IMAGE4}}" alt="Photo 1">
+    <img src="data:image/jpeg;base64,{{BASE64_IMAGE5}}" alt="Photo 2">
+    <button class="next-btn" onclick="nextPage()">Next</button>
+</div>
+
+<div class="page" id="page4">
+    <h1>Love Notes 💌</h1>
+    <div class="love-note">I hope this makes you smile as much as you make me smile every time I talk to you</div>
+    <div class="love-note">I always want you to know, when you came to me, you were the best thing to ever happen to me</div>
+    <div class="love-note">You deserve all the best things in the world and I hope one day you see it</div>
+    <div class="love-note">To me, you'll always be one of the most beautiful people in the world</div>
+    <div class="love-note">Happy birthday my darling</div>
+    <button class="next-btn" onclick="nextPage()">Next</button>
+</div>
+
+<div class="page" id="page5">
+    <div class="hearts" id="hearts"></div>
+    <h1>Final Message 🌟</h1>
+    <p>Happy birthday Christabel. I hope you enjoy this. I hope you enjoy the little things of life as you chase the big ones.</p>
+    <p>I pray life is kind to you and that you age beautifully and gracefully.</p>
+    <p>I pray you shine brightly among others and that you see beauty in you as I see it.</p>
+    <p>And I pray you conquer medical school.</p>
+</div>
+
+<script>
+let currentPage = 1;
+function nextPage() {
+    document.getElementById(`page${currentPage}`).classList.remove('active');
+    currentPage++;
+    document.getElementById(`page${currentPage}`).classList.add('active');
+}
+
+// Floating hearts generator for final page
+function createHeart() {
+    const heart = document.createElement('div');
+    heart.classList.add('heart');
+    heart.textContent = '❤';
+    heart.style.left = Math.random() * 100 + 'vw';
+    heart.style.animationDuration = (3 + Math.random() * 3) + 's';
+    document.getElementById('hearts').appendChild(heart);
+    setTimeout(() => { heart.remove(); }, 6000);
+}
+setInterval(createHeart, 300);
+</script>
+
+</body>
+</html>
